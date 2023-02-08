@@ -14,19 +14,19 @@ class Game
     @game_over = false
     @avaiable_numbers = [1, 2, 3, 4, 5, 6, 7, 8]
     # @secret = @avaiable_numbers.shuffle.take(4)
-    @secret = [1,3,5,6]
+    @secret = [1,2,3,6]
   end
   
   def feedback
     feedback_arr = []
-    for guess in @player_move
+    @player_move.each do |guess|
       if @secret.include?(guess)
         i = @secret.index(guess)
-        for element in @secret
-          if guess == element
-            feedback_arr.push('X')
-          end
-        end
+        if @secret[i] == @player_move[i]
+          feedback_arr << 'X'
+        else
+          feedback_arr << 'O'
+        end     
       end
     end
     return feedback_arr
@@ -34,7 +34,7 @@ class Game
   
   def get_player_move
     # @player_move = gets.chomp.split('').map(&:to_i)
-    @player_move = [1,2,3,4]
+    @player_move = [9,1,3,4]
   end
 
 end
